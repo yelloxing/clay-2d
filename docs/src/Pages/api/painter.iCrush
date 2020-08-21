@@ -147,7 +147,7 @@ painter.fillText("Step By Step", 100, 100).appendTo("g.text");
         </p>
         <div ui-copy>
             <pre class="prettyprint">
-painter.fillText(text, x, y[, deg]);
+painter.fillText(text, x, y,[deg]);
             </pre>
         </div>
         <p>
