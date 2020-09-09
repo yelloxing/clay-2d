@@ -11,7 +11,7 @@
 * Copyright yelloxing
 * Released under the MIT license
 *
-* Date:Wed Sep 09 2020 09:24:59 GMT+0800 (GMT+08:00)
+* Date:Wed Sep 09 2020 10:10:21 GMT+0800 (GMT+08:00)
 */
 
 'use strict';
@@ -2459,12 +2459,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     // 画弧统一设置方法
     var initArc$1 = function initArc$1(painter, config, cx, cy, r1, r2, beginDeg, deg) {
         if (!painter || painter.length <= 0 || painter[0].nodeName.toLowerCase() !== 'path') throw new Error('Need a <path> !');
-
-        // 当|deg|>=2π的时候都认为是一个圆环
-        if (deg >= Math.PI * 2 || deg <= -Math.PI * 2) {
-            deg = Math.PI * 1.999999;
-        }
-
         arc(beginDeg, deg, cx, cy, r1, r2, function (beginA, endA, begInnerX, begInnerY, begOuterX, begOuterY, endInnerX, endInnerY, endOuterX, endOuterY, r) {
             var f = endA - beginA > Math.PI ? 1 : 0,
                 d = "M" + begInnerX + " " + begInnerY;

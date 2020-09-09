@@ -45,12 +45,6 @@ export let initText = function (painter, config, x, y, deg) {
 // 画弧统一设置方法
 export let initArc = function (painter, config, cx, cy, r1, r2, beginDeg, deg) {
     if (!painter || painter.length <= 0 || painter[0].nodeName.toLowerCase() !== 'path') throw new Error('Need a <path> !');
-
-    // 当|deg|>=2π的时候都认为是一个圆环
-    if (deg >= Math.PI * 2 || deg <= -Math.PI * 2) {
-        deg = Math.PI * 1.999999
-    }
-
     arc(beginDeg, deg, cx, cy, r1, r2, function (
         beginA, endA,
         begInnerX, begInnerY,
