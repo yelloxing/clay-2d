@@ -7,14 +7,14 @@
 *
 * author 你好2007
 *
-* version 1.14.0
+* version 1.14.1
 *
 * build Thu Apr 11 2019
 *
 * Copyright hai2007 < https://hai2007.gitee.io/sweethome/ >
 * Released under the MIT license
 *
-* Date:Tue Jun 15 2021 14:01:38 GMT+0800 (中国标准时间)
+* Date:Fri Jul 02 2021 11:29:21 GMT+0800 (中国标准时间)
 */
 
 "use strict";
@@ -1790,6 +1790,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 return [maxValue];
             }
 
+        // 计算最终小数点应该保留的位数
+        var dotMaxNum = (maxValue + ".").split('.')[1].length;
+        var dotMinNum = (minValue + ".").split('.')[1].length;
+        var dotNum = dotMaxNum > dotMinNum ? dotMaxNum : dotMinNum;
+
         // 为了变成 -100 ~ 100 需要放大或者缩小的倍数
         var times100 = function (_value) {
 
@@ -1827,10 +1832,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         // 获取最终的刻度尺数组
         rulerArray.push(begin);
         for (index = 1; rulerArray[rulerArray.length - 1] < maxValue; index++) {
-            rulerArray.push(begin + distance * index);
+            rulerArray.push(+(begin + distance * index).toFixed(dotNum));
         }
+        rulerArray[0] = +begin.toFixed(dotNum);
 
-        return rulerArray;
+        // 最后，进行校对
+        var _rulerArray = [rulerArray[0]];
+        for (var i = 1; i < rulerArray.length; i++) {
+            if (_rulerArray[_rulerArray.length - 1] != rulerArray[i]) {
+                _rulerArray.push(rulerArray[i]);
+            }
+        }
+        return _rulerArray;
     }
 
     // 刻度计算
