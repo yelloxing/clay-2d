@@ -7,14 +7,14 @@
 *
 * author 你好2007
 *
-* version 1.14.1
+* version 1.14.2
 *
 * build Thu Apr 11 2019
 *
 * Copyright hai2007 < https://hai2007.gitee.io/sweethome/ >
 * Released under the MIT license
 *
-* Date:Fri Jul 02 2021 11:32:07 GMT+0800 (中国标准时间)
+* Date:Sat Jul 10 2021 21:02:38 GMT+0800 (GMT+08:00)
 */
 
 "use strict";
@@ -1856,7 +1856,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return {
             min: rulerArray[0],
             max: rulerArray[rulerArray.length - 1],
-            distance: rulerArray[1] - rulerArray[0],
+            distance: rulerArray.length <= 1 ? 0 : rulerArray[1] - rulerArray[0],
             num: rulerArray.length - 1,
             ruler: rulerArray
         };
